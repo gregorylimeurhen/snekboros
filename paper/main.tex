@@ -1,0 +1,380 @@
+\documentclass{amsart}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{mathrsfs}
+\usepackage{mleftright}
+\usepackage{parskip}
+\usepackage{physics}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{notation}{Notation}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{claim}{Claim}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\makeatletter
+\def\thm@space@setup{\thm@preskip=\parskip\thm@postskip=0pt}
+\makeatother
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\concat}{\mathbin{\|}}
+\newcommand{\setmid}{\;\middle|\;}
+
+\title{Snekboros: Vision World Models for Competitive Snake Playing}
+\author{Team 5}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Methodology}
+
+\subsection{Data}
+
+Let $\mathrm{L}\in\N_{\geq 1}$ be a grid extent,
+and $\mathrm{S}\in\N_{\geq 1}$ be a number of snakes.
+
+\begin{definition}[Grid]
+$$
+	\mathcal{G}
+	=
+	[1..\mathrm{L}]^{2}
+$$
+\end{definition}
+
+\begin{definition}[Action Space]
+$$
+	\mathcal{A}
+	=
+	\{(0,0),(0,1),(0,-1),(-1,0),(1,0)\}
+$$
+\end{definition}
+
+\begin{definition}[Movement Space]
+$$
+	\mathcal{M}
+	=
+	\mathcal{A}\setminus\{(0,0)\}
+$$
+\end{definition}
+
+\begin{definition}[Snake Space]
+$$
+	\mathcal{S}
+	=
+	\bigcup_{n\geq 2}\mleft\{
+		\bm{s}\in\mleft(\Z^{2}\mright)^{n}
+		\setmid
+		\forall i\in[1..n-1]\mleft(
+			s_{i+1}-s_{i}\in\mathcal{M}
+		\mright)
+	\mright\}
+$$
+\end{definition}
+
+\begin{definition}[Action Oracle]
+$$
+	\delta:\mathcal{S}\times\N\to\mathcal{A}
+$$
+\end{definition}
+
+\begin{definition}[Snake Occupancy]
+Let $\bm{S}\in\mathcal{S}$.
+$$
+	\mathcal{O}(\bm{S})
+	=
+	\mleft\{
+		s_{i}
+		\mid
+		\bm{s}\in\bm{S}
+		\land
+		i\in[1..\abs{\bm{s}}]
+	\mright\}
+$$
+\end{definition}
+
+\begin{definition}[Pairing Function]
+\begin{align*}
+	\rho
+	&:
+	\mathcal{G}^{2\mathrm{S}}
+	\to
+	(\mathcal{G}\times\mathcal{G})^{\mathrm{S}}
+	\\
+	\rho(\bm{x})
+	&=
+	(
+		(x_{2i-1},x_{2i})
+	)_{i=1}^{\mathrm{S}}
+\end{align*}
+\end{definition}
+
+\begin{algorithm}[H]
+\caption{$\textsc{Game}$}
+\begin{algorithmic}
+	\State ${
+		\bm{S}
+		\sim
+		\rho\circ\mathcal{U}(
+			\{
+				\bm{s}\in\mathcal{G}^{2\mathrm{S}}
+				\mid
+				\forall i\in[1..\mathrm{S}](
+					s_{2i}-s_{2i-1}\in\mathcal{M}
+				)
+				\land
+				|\{s_{i}\}_{i=1}^{2\mathrm{S}}|
+				=
+				2\mathrm{S}
+			\}
+		)
+	}$
+
+	\State $E\gets\mathcal{G}\setminus\mathcal{O}(\bm{S})$
+	\If{$E=\varnothing$}
+		\State $f\gets\perp$
+	\Else{}
+		\State $f\gets\mathcal{U}(E)$
+	\EndIf
+
+	\State $t\gets 0$
+
+	\While{$|\bm{S}|>0$}
+		\State $i_{f}\gets 0$
+
+		\ForAll{$\bm{s}\bm{\in}\bm{S}$}
+			\Comment{Translate snakes}
+			\State $\bm{s}\gets(s_{i})_{i=1}^{|\bm{s}|-1}$
+			\State $d\gets\delta(\bm{s},t)$
+			\If{$d=(0,0)$}
+				\State $\bm{s}\gets(2s_{1}-s_{2})\concat\bm{s}$
+			\Else
+				\State $\bm{s}\gets(s_{1}+d)\concat\bm{s}$
+			\EndIf
+		\EndFor
+
+		\ForAll{$\bm{s}\bm{\in}\bm{S}$}
+		\Comment{Grow snakes}
+			\If{$s_{1}=f$}
+				\State ${
+					\bm{s}
+					\gets
+					\bm{s}
+					\concat
+					(2s_{|\bm{s}|}-s_{|\bm{s}|-1})
+				}$
+				\State $i_{f}\gets 1$
+			\EndIf
+		\EndFor
+
+		\State $D\gets\varnothing$
+		\State ${
+			B
+			\gets
+			\{
+				s_{i}
+				\mid
+				\bm{s}\bm{\in}\bm{S}
+				\land
+				i\in[2..|\bm{s}|]
+			\}
+		}$
+		\ForAll{$\bm{s}\bm{\in}\bm{S}$}
+			\If{$s_{1}\not\in\mathcal{G}\lor s_{1}\in B$}
+				\State $D\gets D\cup\{\bm{s}\}$
+			\EndIf
+		\EndFor
+
+		\State ${
+			H
+			\gets
+			\{
+				\bm{g}\in\mathcal{G}
+				\mid
+				\exists\bm{c}\bm{\subseteq}\bm{S}(
+					|\bm{c}|\geq 2
+					\land
+					\forall\bm{s}\bm{\in}\bm{c}(s_{1}=\bm{g})
+				)
+			\}
+		}$
+		\ForAll{$h\in H$}
+			\State $C\gets\{\bm{s}\bm{\in}\bm{S}\mid s_{1}=h\}$
+			\State ${
+				w
+				\gets
+				\mathcal{U}(
+					\arg\max_{\bm{s}\in C}
+					|\bm{s}|
+				)
+			}$
+			\State $D\gets D\cup (C\setminus\{w\})$
+		\EndFor
+
+		\ForAll{$d\in D$}
+		\Comment{Kill snakes}
+			\State $\bm{S}\gets\bm{S}\bm{\setminus}\{d\}$
+		\EndFor
+
+		\If{$i_{f}=1$}
+		\Comment{Respawn food}
+			\State $E\gets\mathcal{G}\setminus\mathcal{O}(\bm{S})$
+			\If{$E=\varnothing$}
+				\State $f\gets\perp$
+			\Else{}
+				\State $f\gets\mathcal{U}(E)$
+			\EndIf
+		\EndIf
+
+		\State $t\gets t+1$
+	\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Cell} & \textbf{Colour} \\
+		\midrule
+		Background & Black \\
+		Body of playable snake & Blue \\
+		Head of playable snake & Mid(Blue, White) \\
+		Body of non-playable snake & Red \\
+		Head of non-playable snake & Mid(Red, White) \\
+		Food & Green \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{Architecture}
+
+Let $\mathcal{X}$ be a raw space,
+and $\mathcal{R}$ be a representation space,
+and $\mathcal{Z}$ be a latent space,
+and $\mathbb{P}_{\mathcal{Z}}$ be a probability measure on $\mathcal{Z}$.
+
+\begin{definition}[Encoder]
+$$
+	\phi:\mathcal{X}\to\mathcal{R}
+$$
+\end{definition}
+
+\begin{definition}[World Model]
+$$
+	\mathscr{F}
+	:
+	\mathcal{R}\times\mathcal{A}\times\mathcal{Z}
+	\to
+	\mathcal{R}
+$$
+\end{definition}
+
+\begin{definition}[Energy]
+$$
+	\mathscr{C}:\mathcal{R}\to\R_{\geq 0}
+$$
+\end{definition}
+
+\begin{definition}[Discounted Sum Planner]
+\begin{align*}
+	f
+	&:
+	\mathcal{X}\times\N_{\geq 1}\times\R_{[0,1]}
+	\to
+	\bigsqcup_{t\geq 1}\mathcal{A}^{t}
+	\\
+	f(x,T,\gamma)
+	&=
+	\mathcal{U}\mleft(
+		\arg\min_{\bm{a}\in\mathcal{A}^{T}}
+		\E_{\bm{z}\sim\mathbb{P}_{\mathcal{Z}}^{\otimes T}}\mleft[
+			\sum_{t=1}^{T}
+			\gamma^{t-1}
+			\mathscr{C}\mleft(
+				\mleft(
+					\bigcirc_{i=1}^{t}
+					\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
+				\mright)(
+					\phi(x)
+				)
+			\mright)
+		\mright]
+	\mright)
+\end{align*}
+\end{definition}
+
+There can be multiple encoders.
+The encoder(s) and world model are learnable.
+The energy can be learnable or non-learnable.
+We could store some $(s_{t},a_{t},s_{t+1},r_{t})$ tuples in our dataset,
+with scalar $r_{t}$ derived ``naturally'' from the game.
+
+Learning can proceed in stages.
+For example, one could train (1) the encoder(s), then (2) ``the encoder(s) connected with the world model'', then (3) ``the encoder(s) connected with the world model connected with the (learnable or non-learnable) energy''.
+
+\clearpage
+
+\section{Appendix}
+
+\begin{notation}
+Let $x$ be a set, and $\bm{y}$ be a sequence.
+$$
+	x\bm{\in}\bm{y}
+	\equiv
+	x\in\im(\bm{y})
+$$
+\end{notation}
+
+\begin{notation}
+Let $\bm{x},\bm{y}$ be sequences.
+$$
+	\bm{x}\bm{\subseteq}\bm{y}
+	\equiv
+	\im(\bm{x})\subseteq\im(\bm{y})
+$$
+\end{notation}
+
+\begin{notation}
+Let $\bm{x}$ be a sequence, and $y$ be a set.
+$$
+	\bm{x}\bm{\setminus}y
+	=
+	(x_{i})_{i\in\{j\in\dom(\bm{x})\mid x_{j}\not\in y\}}
+$$
+\end{notation}
+
+\begin{notation}
+Let $\bm{x}$ be a sequence.
+$$
+	\abs{\bm{x}}
+	=
+	\abs{\dom(\bm{x})}
+$$
+\end{notation}
+
+\begin{notation}
+Let $n\geq 1$, and $X$ be a set, and $f_{1},\dots,f_{n}:X\to X$.
+$$
+	\bigcirc_{i=1}^{n}f_{i}
+	=
+	f_{n}\circ\dots\circ f_{1}
+$$
+\end{notation}
+
+\end{document}
