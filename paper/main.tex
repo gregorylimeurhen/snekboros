@@ -47,6 +47,7 @@
 \subsection{Data}
 
 Let $\mathrm{L}\in\N_{\geq 1}$ be a grid extent,
+and $\mathrm{U}\in\N_{\geq 1}$ be an upsampling factor,
 and $\mathrm{S}\in\N_{\geq 1}$ be a number of snakes.
 
 \begin{definition}[Grid]
@@ -87,6 +88,14 @@ $$
 $$
 \end{definition}
 
+\begin{definition}[Food Space]
+$$
+	\mathcal{F}
+	=
+	\mathcal{G}\cup\{\perp\}
+$$
+\end{definition}
+
 \begin{definition}[Action Oracle]
 $$
 	\delta:\mathcal{S}\times\N\to\mathcal{A}
@@ -94,7 +103,7 @@ $$
 \end{definition}
 
 \begin{definition}[Snake Occupancy]
-Let $\bm{S}\in\mathcal{S}$.
+Let $\bm{S}\in\mathcal{S}^{*}$.
 $$
 	\mathcal{O}(\bm{S})
 	=
@@ -159,13 +168,13 @@ $$
 
 		\ForAll{$\bm{s}\bm{\in}\bm{S}$}
 			\Comment{Translate snakes}
-			\State $\bm{s}\gets(s_{i})_{i=1}^{|\bm{s}|-1}$
 			\State $d\gets\delta(\bm{s},t)$
 			\If{$d=(0,0)$}
-				\State $\bm{s}\gets(2s_{1}-s_{2})\concat\bm{s}$
-			\Else
-				\State $\bm{s}\gets(s_{1}+d)\concat\bm{s}$
+				\State $h\gets 2s_{1}-s_{2}$
+			\Else{}
+				\State $h\gets s_{1}+d$
 			\EndIf
+			\State $\bm{s}\gets h\concat(s_{i})_{i=1}^{|\bm{s}|-1}$
 		\EndFor
 
 		\ForAll{$\bm{s}\bm{\in}\bm{S}$}
@@ -246,28 +255,109 @@ $$
 \end{algorithmic}
 \end{algorithm}
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Cell} & \textbf{Colour} \\
-		\midrule
-		Background & Black \\
-		Body of playable snake & Blue \\
-		Head of playable snake & Mid(Blue, White) \\
-		Body of non-playable snake & Red \\
-		Head of non-playable snake & Mid(Red, White) \\
-		Food & Green \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+% \begin{table}[H]
+% 	\centering
+% 	\begin{tabular}{ll}
+% 		\toprule
+% 		\textbf{Cell} & \textbf{Colour} \\
+% 		\midrule
+% 		Background & Black \\
+% 		Body of playable snake & Blue \\
+% 		Head of playable snake & Mid(Blue, White) \\
+% 		Body of non-playable snake & Red \\
+% 		Head of non-playable snake & Mid(Red, White) \\
+% 		Food & Green \\
+% 		\bottomrule
+% 	\end{tabular}
+% \end{table}
 
 \subsection{Architecture}
 
-Let $\mathcal{X}$ be a raw space,
-and $\mathcal{R}$ be a representation space,
-and $\mathcal{Z}$ be a latent space,
-and $\mathbb{P}_{\mathcal{Z}}$ be a probability measure on $\mathcal{Z}$.
+Let $\mathrm{R}\in\N_{\geq 1}$ be a representation space dimensionality,
+and $\mathrm{Z}\in\N_{\geq 1}$ be a latent space dimensionality,
+and $\mathcal{X}=\N_{\leq 255}^{\mathrm{U}\mathrm{L}\times\mathrm{U}\mathrm{L}\times 3}$ be a raw space,
+and $\mathcal{R}=\R^{\mathrm{R}}$ be a representation space,
+and $\mathcal{Z}=\R^{\mathrm{Z}}$ be a latent space,
+and $\mathbb{P}_{\mathcal{Z}}$ be a probability measure on $\mathcal{Z}$,
+and $\gamma\in\R_{[0,1]}$ be a discount factor,
+and $T\in\N_{\geq 1}$ be a planning horizon.
+
+\begin{definition}[Colouring Function]
+\begin{align*}
+	\mathcal{C}
+	&:
+	\mathcal{G}
+	\times
+	\mathcal{S}^{*}
+	\times
+	\mathcal{F}
+	\to
+	\N_{\leq 255}^{3}
+	\\
+	\mathcal{C}((i,j),\bm{S},f)
+	&=
+	\begin{cases}
+		(128,128,255) % Playable head
+		, &
+		\text{if }
+		\abs{\bm{S}}\geq 1\land(i,j)=s_{1,1}
+		\\
+		(0,0,255) % Blue
+		, &
+		\text{if }
+		\abs{\bm{S}}\geq 1
+		\land
+		\exists k\in[2..\abs{\bm{s}_{1}}]((i,j)=s_{1,k})
+		\\
+		(255,128,128) % Nonplayable head
+		, &
+		\text{if }
+		\exists r\in[2..\abs{\bm{S}}]((i,j)=s_{r,1})
+		\\
+		(255,0,0) % Red
+		, &
+		\text{if }
+		\exists r\in[2..\abs{\bm{S}}],
+		\exists k\in[2..\abs{\bm{s}_{r}}](
+			(i,j)=s_{r,k}
+		)
+		\\
+		(0,255,0) % Green
+		, &
+		\text{if }
+		f\neq\perp\land(i,j)=f
+		\\
+		(0,0,0) % Black
+		, &
+		\text{otherwise}
+	\end{cases}
+\end{align*}
+\end{definition}
+
+\begin{definition}[Rasterisation Function]
+\begin{align*}
+	\mathcal{D}
+	&:
+	\mathcal{S}^{*}
+	\times
+	\mathcal{F}
+	\to
+	\mathcal{X}
+	\\
+	\mathcal{D}(\bm{S},f)
+	&=
+	\mleft(
+		\mathcal{C}\mleft(
+			\mleft(
+				\mleft\lceil\frac{i}{\mathrm{U}}\mright\rceil,
+				\mleft\lceil\frac{j}{\mathrm{U}}\mright\rceil
+			\mright),
+			\bm{S},
+			f
+		\mright)
+	\mright)_{(i,j)\in[1..\mathrm{U}\mathrm{L}]^{2}}
+\end{align*}
+\end{definition}
 
 \begin{definition}[Encoder]
 $$
@@ -295,11 +385,11 @@ $$
 \begin{align*}
 	f
 	&:
-	\mathcal{X}\times\N_{\geq 1}\times\R_{[0,1]}
+	\mathcal{X}
 	\to
 	\bigsqcup_{t\geq 1}\mathcal{A}^{t}
 	\\
-	f(x,T,\gamma)
+	f(x)
 	&=
 	\mathcal{U}\mleft(
 		\arg\min_{\bm{a}\in\mathcal{A}^{T}}
@@ -319,14 +409,14 @@ $$
 \end{align*}
 \end{definition}
 
-There can be multiple encoders.
-The encoder(s) and world model are learnable.
-The energy can be learnable or non-learnable.
-We could store some $(s_{t},a_{t},s_{t+1},r_{t})$ tuples in our dataset,
-with scalar $r_{t}$ derived ``naturally'' from the game.
+% There can be multiple encoders.
+% The encoder(s) and world model are learnable.
+% The energy can be learnable or non-learnable.
+% We could store some $(x_{t},a_{t},x_{t+1},r_{t})$ tuples in our dataset,
+% with scalar $r_{t}$ derived ``naturally'' from the game.
 
-Learning can proceed in stages.
-For example, one could train (1) the encoder(s), then (2) ``the encoder(s) connected with the world model'', then (3) ``the encoder(s) connected with the world model connected with the (learnable or non-learnable) energy''.
+% Learning can proceed in stages.
+% For example, one could train (1) the encoder(s), then (2) ``the encoder(s) connected with the world model'', then (3) ``the encoder(s) connected with the world model connected with the (learnable or non-learnable) energy''.
 
 \clearpage
 
