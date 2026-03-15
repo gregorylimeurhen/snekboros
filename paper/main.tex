@@ -79,7 +79,7 @@ $$
 	\mathcal{S}
 	=
 	\bigcup_{n\geq 2}\mleft\{
-		\bm{s}\in\mleft(\Z^{2}\mright)^{n}
+		\bm{s}\in(\Z\times\Z)^{n}
 		\setmid
 		\forall i\in[1..n-1]\mleft(
 			s_{i+1}-s_{i}\in\mathcal{M}
@@ -282,7 +282,7 @@ and $\mathbb{P}_{\mathcal{Z}}$ be a probability measure on $\mathcal{Z}$,
 and $\gamma\in\R_{[0,1]}$ be a discount factor,
 and $T\in\N_{\geq 1}$ be a planning horizon.
 
-\begin{definition}[Colouring Function]
+\begin{definition}[Colour Function]
 \begin{align*}
 	\mathcal{C}
 	&:
@@ -307,20 +307,24 @@ and $T\in\N_{\geq 1}$ be a planning horizon.
 		\text{if }
 		\abs{\bm{S}}\geq 1
 		\land
-		\exists k\in[2..\abs{\bm{s}_{1}}]((i,j)=s_{1,k})
+		\exists k\in\mleft[2..\abs{\bm{s}_{1}}\mright]\mleft(
+			(i,j)=s_{1,k}
+		\mright)
 		\\
 		(255,128,128) % Nonplayable head
 		, &
 		\text{if }
-		\exists r\in[2..\abs{\bm{S}}]((i,j)=s_{r,1})
+		\exists r\in\mleft[2..\abs{\bm{S}}\mright]\mleft(
+			(i,j)=s_{r,1}
+		\mright)
 		\\
 		(255,0,0) % Red
 		, &
 		\text{if }
-		\exists r\in[2..\abs{\bm{S}}],
-		\exists k\in[2..\abs{\bm{s}_{r}}](
+		\exists r\in\mleft[2..\abs{\bm{S}}\mright],
+		\exists k\in[2..\abs{\bm{s}_{r}}]\mleft(
 			(i,j)=s_{r,k}
-		)
+		\mright)
 		\\
 		(0,255,0) % Green
 		, &
@@ -334,7 +338,7 @@ and $T\in\N_{\geq 1}$ be a planning horizon.
 \end{align*}
 \end{definition}
 
-\begin{definition}[Rasterisation Function]
+\begin{definition}[Display Function]
 \begin{align*}
 	\mathcal{D}
 	&:
@@ -355,7 +359,7 @@ and $T\in\N_{\geq 1}$ be a planning horizon.
 			\bm{S},
 			f
 		\mright)
-	\mright)_{(i,j)\in[1..\mathrm{U}\mathrm{L}]^{2}}
+	\mright)_{i,j\in[1..\mathrm{U}\mathrm{L}]}
 \end{align*}
 \end{definition}
 
