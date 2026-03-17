@@ -310,6 +310,8 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm
 INPUT /Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmsans10-bold.luc
 INPUT ./openai-request.png
 INPUT ./openai-request.png
+INPUT ./lecun-talk.png
+INPUT ./lecun-talk.png
 OUTPUT main.vrb
 INPUT ./main.vrb
 INPUT /Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmmono8-regular.luc

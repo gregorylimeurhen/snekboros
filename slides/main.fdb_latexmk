@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1773735306.73133 "/Users/gregory/Code/snekboros/slides/main.tex" "main.pdf" "main" 1773735308.58931 0
-  "/Users/gregory/Code/snekboros/slides/main.tex" 1773735304.4222 12694 ce179a545020a872c20aaae953ae7c41 ""
+["lualatex"] 1773738688.94365 "/Users/gregory/Code/snekboros/slides/main.tex" "main.pdf" "main" 1773738691.04115 0
+  "/Users/gregory/Code/snekboros/slides/main.tex" 1773738688.7195 12907 2536ebe97de8d42ccc76a27ab8af54f4 ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmmono8-regular.luc" 1733663650.64227 81440 f06a7d80eb3d19e5ab78d1375df4de2d ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman5-regular.luc" 1733648643.98172 125967 096c15004e8ec9d74a8c24e609d7d434 ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman6-regular.luc" 1733648643.78274 128516 b62d5d2d5c2a70f7d2adb0c749b75720 ""
@@ -302,11 +302,12 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1730549341.22896 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/luahbtex/lualatex.fmt" 1730549240 12257081 f19bd84b5ddfc346b28f5ff4a50fdd20 ""
   "anthropic-claim.png" 1773718748.09311 181342 29c10b1216cc373e096f78d41bccb44f ""
-  "main.aux" 1773735308.40178 2759 553ae24f1d6804f08e856da1479495d8 "lualatex"
-  "main.nav" 1773735308.40261 1771 38d69c7f927c92b4bc19c489cca72e9d "lualatex"
-  "main.out" 1773735308.40238 161 9f67e5760d783ae05a1301a03168470d "lualatex"
-  "main.tex" 1773735304.4222 12694 ce179a545020a872c20aaae953ae7c41 ""
-  "main.vrb" 1773735308.15633 560 f9c187e986a4e9b468b3eba585d083cd "lualatex"
+  "lecun-talk.png" 1773738553.46227 1244535 632bec98ab27fea4ba0a2c8dbcfd5e2c ""
+  "main.aux" 1773738690.85739 3034 bfa21577d08848ab76377aa2e15d063f "lualatex"
+  "main.nav" 1773738690.8584 1926 06d1aecdd36fcfe548a7a408b12d3ca7 "lualatex"
+  "main.out" 1773738690.85814 267 ff17c5034e79dc576e763143671e3a94 "lualatex"
+  "main.tex" 1773738688.7195 12907 2536ebe97de8d42ccc76a27ab8af54f4 ""
+  "main.vrb" 1773738690.63317 560 f9c187e986a4e9b468b3eba585d083cd "lualatex"
   "openai-request.png" 1773718755.79889 227629 0564d3dbbba7c735ee410c70634cb189 ""
   "snake-grid.png" 1773718818.38742 829 0021395df65e2c24206237191e3cd93f ""
   (generated)

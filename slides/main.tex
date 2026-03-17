@@ -78,6 +78,21 @@ Multiplayer Snake has been put forward as a research request by OpenAI.
 As our research contribution, we investigate vision world models in the simple setting of competitive Snake.
 \end{frame}
 
+\section{Related work}
+
+\begin{frame}
+What we shall discuss has been discussed in many works, including talks by LeCun.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{lecun-talk.png}
+\end{figure}
+We identify 2 published works which, as far as we can tell, sit closest to our work in task and method:
+\begin{itemize}
+	\item \textbf{Multiplayer..self-play} (Francis, 2019) has our task but uses PPO.
+	\item \textbf{TD-MPC} (Hansen et al., 2022) has our method but uses continuous-control DMControl tasks.
+\end{itemize}
+\end{frame}
+
 \section{Proposal}
 
 \begin{frame}[fragile]{Data}
@@ -434,7 +449,7 @@ and $\mathrm{S}\in\N_{\geq 1}$ be a number of snakes.
 
 The encoder and world model are learnable; the energy can be learnable or non-learnable:
 \begin{itemize}
-	\item The encoder predicts a hidden representation from an image.\footnote{The goal is to eliminate any detail unnecessary for prediction}.
+	\item The encoder predicts a hidden representation from an image.
 	\item The world model predicts the next hidden representation from a hidden representation, action, and latent representation.
 	\item The energy predicts a scalar cost measuring how ``good'' a hidden representation is.
 \end{itemize}
@@ -503,13 +518,6 @@ The solution can be given by a discounted sum planner like
 where $x\in\mathcal{X}$ is an image,
 and $\gamma\in\R_{[0,1]}$ is a discount factor,
 and $T\in\N_{\geq 1}$ is a planning horizon.
-\end{frame}
-
-\begin{frame}{Related work}
-	\begin{itemize}
-		\item \textbf{Multiplayer..self-play} (Francis, 2019) has our task but uses PPO.
-		\item \textbf{TD-MPC} (Hansen et al., 2022) has our method but uses continuous-control DMControl tasks.
-	\end{itemize}
 \end{frame}
 
 \begin{frame}{Appendix}
