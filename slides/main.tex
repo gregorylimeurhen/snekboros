@@ -477,15 +477,25 @@ The solution can be given by a discounted sum planner like
 	\mathcal{U}\mleft(
 		\arg\min_{\bm{a}\in\mathcal{A}^{T}}
 		\E_{\bm{z}\sim\mathbb{P}_{\mathcal{Z}}^{\otimes T}}\mleft[
+			\gamma^{T}
+			\mathscr{V}\mleft(
+				\mleft(
+					\bigcirc_{i=1}^{T}
+					\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
+				\mright)\mleft(
+					\phi(x)
+				\mright)
+			\mright)
+			+
 			\sum_{t=1}^{T}
 			\gamma^{t-1}
 			\mathscr{C}\mleft(
 				\mleft(
 					\bigcirc_{i=1}^{t}
 					\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
-				\mright)(
+				\mright)\mleft(
 					\phi(x)
-				)
+				\mright)
 			\mright)
 		\mright]
 	\mright)
@@ -493,6 +503,13 @@ The solution can be given by a discounted sum planner like
 where $x\in\mathcal{X}$ is an image,
 and $\gamma\in\R_{[0,1]}$ is a discount factor,
 and $T\in\N_{\geq 1}$ is a planning horizon.
+\end{frame}
+
+\begin{frame}{Related work}
+	\begin{itemize}
+		\item \textbf{Multiplayer..self-play} (Francis, 2019) has our task but uses PPO.
+		\item \textbf{TD-MPC} (Hansen et al., 2022) has our method but uses continuous-control DMControl tasks.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Appendix}
