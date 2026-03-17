@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{mathrsfs}
 \usepackage{mleftright}
+\usepackage[round, authoryear]{natbib}
 \usepackage{parskip}
 \usepackage{physics}
 \usepackage{tikz}
@@ -55,7 +56,7 @@ For example:
 How might machines learn like animals?
 
 (L)LMs are popular now, but limited by construction.
-Consider the standard transformer (Vaswani et al., 2017):
+Consider the standard transformer \citep{vaswani2017attention}:
 \begin{itemize}
 	\item It does a fixed amount of computation per token at inference.
 	\item It does not model the consequences of its actions at inference.
@@ -63,7 +64,7 @@ Consider the standard transformer (Vaswani et al., 2017):
 	$$
 		(1-\varepsilon)^{n}\approx\exp(-\varepsilon n)
 	$$
-	\item The real world often has nothing to do with language (Einstein, 1931); humans use discrete, low-bandwidth, and clear symbols for effective communication, but the real world is often continuous, high-bandwidth, and noisy (LeCun, 2025).
+	\item The real world often has nothing to do with language \citep{einstein1931world}; humans use discrete, low-bandwidth, and clear symbols for communication, but the real world is often continuous, high-bandwidth, and noisy \citep{lecun2025jepa}.
 \end{itemize}
 \end{frame}
 
@@ -88,8 +89,8 @@ What we shall discuss has been discussed in many works, including talks by LeCun
 \end{figure}
 We identify 2 published works which, as far as we can tell, sit closest to our work in task and method:
 \begin{itemize}
-	\item \textbf{Multiplayer..self-play} (Francis, 2019) has our task but uses PPO.
-	\item \textbf{TD-MPC} (Hansen et al., 2022) has our method but uses continuous-control DMControl tasks.
+	\item \textbf{Multiplayer Snake ... using Self-Play} \citep{francis2019multiplayer} has our task but uses PPO.
+	\item \textbf{TD-MPC} \citep{hansen2022tdmpc} has our method but uses continuous-control DMControl tasks.
 \end{itemize}
 \end{frame}
 
@@ -492,17 +493,15 @@ The solution can be given by a discounted sum planner like
 	\mathcal{U}\mleft(
 		\arg\min_{\bm{a}\in\mathcal{A}^{T}}
 		\E_{\bm{z}\sim\mathbb{P}_{\mathcal{Z}}^{\otimes T}}\mleft[
-			\textcolor{black!25}{
-				\gamma^{T}
-				\mathscr{V}\mleft(
-					\mleft(
-						\bigcirc_{i=1}^{T}
-						\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
-					\mright)\mleft(
-						\phi(x)
-					\mright)
+			\gamma^{T}
+			\mathscr{V}\mleft(
+				\mleft(
+					\bigcirc_{i=1}^{T}
+					\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
+				\mright)\mleft(
+					\phi(x)
 				\mright)
-			}
+			\mright)
 			+
 			\sum_{t=1}^{T}
 			\gamma^{t-1}
@@ -522,32 +521,38 @@ and $\gamma\in\R_{[0,1]}$ is a discount factor,
 and $T\in\N_{\geq 1}$ is a planning horizon.
 \end{frame}
 
-\begin{frame}{Project Schedule}
+\begin{frame}{Project Timeline Plan}
 	\begin{itemize}
-		\item Week 9: Snake environment implementation and training data.
-		\item Week 10: Model implementation and training.
-		\item Week 11: Model iteration and evaluation.
-		\item Week 12: Report writing and presentation preparation.
+		\item Week 9: Data-related implementation.
+		\item Week 10: Model-related implementation.
+		\item Week 11: Model training and evaluation.
+		\item Week 12: Report and slide deck preparation.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Task Distribution}
+\begin{frame}{Project Task Distribution}
 	\begin{itemize}
-		\item Gregory: Project lead, report writing
-		\item Celest: Training and evaluation
-		\item Ryan: Model code implementation
-		\item Yihe: Snake environment implementation
+		\item Celest: Training and testing of model(s).
+		\item Ryan: Implementation of model(s).
+		\item Yihe: Implementation of data functions.
+		\item Gregory: Writing for report and slide deck, and so on.
 	\end{itemize}
 \end{frame}
-
 
 \begin{frame}{Appendix}
+We use the following conventions.
+
 Let $n\geq 1$, and $X$ be a set, and $f_{1},\dots,f_{n}:X\to X$.
 $$
 	\bigcirc_{i=1}^{n}f_{i}
 	=
 	f_{n}\circ\dots\circ f_{1}
 $$
+\end{frame}
+
+\begin{frame}{Bibliography}
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
 \end{frame}
 
 \end{document}

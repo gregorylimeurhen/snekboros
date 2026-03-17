@@ -225,6 +225,7 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/tools/bm.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/booktabs/booktabs.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/generic/mleftright/mleftright.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/parskip/parskip.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/physics/physics.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
@@ -319,6 +320,7 @@ INPUT ./snake-grid.png
 INPUT ./snake-grid.png
 INPUT /Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman6-regular.luc
 INPUT /Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman5-regular.luc
+INPUT ./main.bbl
 OUTPUT main.nav
 OUTPUT main.toc
 OUTPUT main.snm

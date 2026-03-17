@@ -1,0 +1,39 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Einstein(1931)]{einstein1931world}
+Albert Einstein.
+\newblock {The World As I See It}.
+\newblock \emph{Forum and Century}, 84:\penalty0 193--194, 1931.
+\newblock Also included in \emph{Living Philosophies} (Simon and Schuster, 1931).
+
+\bibitem[Francis(2019)]{francis2019multiplayer}
+Lawrence Francis.
+\newblock {Implementing and Solving a Multiplayer Snake Game Environment Using Self-Play}.
+\newblock Poster, Deep Learning IndabaX Mauritius 2019, 2019.
+\newblock URL \url{https://www.instadeep.com/wp-content/uploads/2019/08/Indaba-Poster-lawrence.pdf}.
+
+\bibitem[Hansen et~al.(2022)Hansen, Su, and Wang]{hansen2022tdmpc}
+Nicklas~A Hansen, Hao Su, and Xiaolong Wang.
+\newblock {Temporal Difference Learning for Model Predictive Control}.
+\newblock In \emph{Proceedings of the 39th International Conference on Machine Learning}, volume 162 of \emph{Proceedings of Machine Learning Research}, pages 8387--8406. PMLR, 2022.
+\newblock URL \url{https://proceedings.mlr.press/v162/hansen22a.html}.
+
+\bibitem[LeCun(2025)]{lecun2025jepa}
+Yann LeCun.
+\newblock {Self-Supervised Learning, {JEPA}, World Models, and the Future of {AI}}.
+\newblock Geometry of Machine Learning Special Lecture, Harvard CMSA, September 2025.
+\newblock URL \url{https://cmsa.fas.harvard.edu/event/lecun91625/}.
+\newblock Talk delivered on September 16, 2025.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin]{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N. Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock {Attention Is All You Need}.
+\newblock In \emph{Advances in Neural Information Processing Systems 30}. Curran Associates, Inc., 2017.
+\newblock URL \url{https://papers.nips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html}.
+
+\end{thebibliography}

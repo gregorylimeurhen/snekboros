@@ -1,6 +1,14 @@
 # Fdb version 4
-["lualatex"] 1773741483.12901 "/Users/gregory/Code/snekboros/slides/main.tex" "main.pdf" "main" 1773741485.26235 0
-  "/Users/gregory/Code/snekboros/slides/main.tex" 1773741482.97687 13507 6383bf4c413ce59d61dc4c9734daaf11 ""
+["bibtex main"] 1773758957.2696 "main.aux" "main.bbl" "main" 1773758959.98466 0
+  "./bibliography.bib" 1773758956.99915 1855 86dbea867ac188ab4e38f62391daccd5 ""
+  "/usr/local/texlive/2024/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
+  "main.aux" 1773758959.60542 4224 643a10352bd122f523e8811c2ce7d038 "lualatex"
+  (generated)
+  "main.bbl"
+  "main.blg"
+  (rewritten before read)
+["lualatex"] 1773758957.42377 "/Users/gregory/Code/snekboros/slides/main.tex" "main.pdf" "main" 1773758959.98479 0
+  "/Users/gregory/Code/snekboros/slides/main.tex" 1773758832.90662 13688 6b45c6248cfdaefb21a0a372408ea22e ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmmono8-regular.luc" 1733663650.64227 81440 f06a7d80eb3d19e5ab78d1375df4de2d ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman5-regular.luc" 1733648643.98172 125967 096c15004e8ec9d74a8c24e609d7d434 ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman6-regular.luc" 1733648643.78274 128516 b62d5d2d5c2a70f7d2adb0c749b75720 ""
@@ -228,6 +236,7 @@
   "/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty" 1708463273 6565 10e89ed128ccd59431746bbdd82129fc ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty" 1708376303 9327 11bedad2ac38f92e405a38ed18489a03 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
+  "/usr/local/texlive/2024/texmf-dist/tex/latex/natbib/natbib.sty" 1291685959 45456 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/parskip/parskip.sty" 1615762720 4288 94714aa7f535440f33181fec52a31963 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty" 1601326656 1090 bae35ef70b3168089ef166db3e66f5b2 ""
   "/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty" 1673816307 373 00b204b1d7d095b892ad31a7494b0373 ""
@@ -301,15 +310,16 @@
   "/usr/local/texlive/2024/texmf-dist/tex/luatex/luaotfload/luaotfload.lua" 1709155629 13565 50482dad4c221a79dbdbb982122baf8c ""
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1730549341.22896 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/luahbtex/lualatex.fmt" 1730549240 12257081 f19bd84b5ddfc346b28f5ff4a50fdd20 ""
-  "anthropic-claim.png" 1773741476.0724 181342 29c10b1216cc373e096f78d41bccb44f ""
-  "lecun-talk.png" 1773741476.07688 1244535 632bec98ab27fea4ba0a2c8dbcfd5e2c ""
-  "main.aux" 1773741485.07688 3292 2000c6c2e3384a3a0096193b435da075 "lualatex"
-  "main.nav" 1773741485.07778 2112 b9fb0f47748c8dd878b8abc8fd3e2d4b "lualatex"
-  "main.out" 1773741485.07754 267 ff17c5034e79dc576e763143671e3a94 "lualatex"
-  "main.tex" 1773741482.97687 13507 6383bf4c413ce59d61dc4c9734daaf11 ""
-  "main.vrb" 1773741484.81661 560 f9c187e986a4e9b468b3eba585d083cd "lualatex"
-  "openai-request.png" 1773741476.08624 227629 0564d3dbbba7c735ee410c70634cb189 ""
-  "snake-grid.png" 1773741476.08634 829 0021395df65e2c24206237191e3cd93f ""
+  "anthropic-claim.png" 1773757473.02804 181342 29c10b1216cc373e096f78d41bccb44f ""
+  "lecun-talk.png" 1773757473.03907 1244535 632bec98ab27fea4ba0a2c8dbcfd5e2c ""
+  "main.aux" 1773758959.60542 4224 643a10352bd122f523e8811c2ce7d038 "lualatex"
+  "main.bbl" 1773758957.38031 2133 8e162df33e57d79d37bd74fd083eac53 "bibtex main"
+  "main.nav" 1773758959.60652 2385 4990d0340580326f1be56df67f502ba5 "lualatex"
+  "main.out" 1773758959.60629 360 daf00338d21c898dadfcd36f9c5abe71 "lualatex"
+  "main.tex" 1773758832.90662 13688 6b45c6248cfdaefb21a0a372408ea22e ""
+  "main.vrb" 1773758959.32202 560 f9c187e986a4e9b468b3eba585d083cd "lualatex"
+  "openai-request.png" 1773757473.05154 227629 0564d3dbbba7c735ee410c70634cb189 ""
+  "snake-grid.png" 1773757473.05165 829 0021395df65e2c24206237191e3cd93f ""
   (generated)
   "main.aux"
   "main.log"
