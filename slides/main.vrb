@@ -1,0 +1,21 @@
+\frametitle{Data}
+We can simulate the game to collect (image, action, next image, cost) tuples in a dataset:
+\begin{alltt}
+initialise snakes
+initialise food
+initialise time
+initialise dataset
+
+while a snake is alive:
+	translate each snake
+	grow any snake on food
+
+	mark as dead each snake whose head is on a wall or body
+	for each cell with multiple heads:
+		mark as dead each snake but random one from longest ones in cell
+	remove each snake marked as dead
+
+	respawn food if eaten
+	add to dataset (image, action, next image, cost)
+	increment time
+\end{alltt}
