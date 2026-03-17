@@ -1,6 +1,6 @@
 # Fdb version 4
-["lualatex"] 1773739130.6711 "/Users/gregory/Code/snekboros/slides/main.tex" "main.pdf" "main" 1773739132.84473 0
-  "/Users/gregory/Code/snekboros/slides/main.tex" 1773739130.44753 12947 6e06fbd7aa35a6dc7254708240855b2d ""
+["lualatex"] 1773741483.12901 "/Users/gregory/Code/snekboros/slides/main.tex" "main.pdf" "main" 1773741485.26235 0
+  "/Users/gregory/Code/snekboros/slides/main.tex" 1773741482.97687 13507 6383bf4c413ce59d61dc4c9734daaf11 ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmmono8-regular.luc" 1733663650.64227 81440 f06a7d80eb3d19e5ab78d1375df4de2d ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman5-regular.luc" 1733648643.98172 125967 096c15004e8ec9d74a8c24e609d7d434 ""
   "/Users/gregory/Library/texlive/2024/texmf-var/luatex-cache/generic/fonts/otl/lmroman6-regular.luc" 1733648643.78274 128516 b62d5d2d5c2a70f7d2adb0c749b75720 ""
@@ -301,15 +301,15 @@
   "/usr/local/texlive/2024/texmf-dist/tex/luatex/luaotfload/luaotfload.lua" 1709155629 13565 50482dad4c221a79dbdbb982122baf8c ""
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1730549341.22896 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/luahbtex/lualatex.fmt" 1730549240 12257081 f19bd84b5ddfc346b28f5ff4a50fdd20 ""
-  "anthropic-claim.png" 1773718748.09311 181342 29c10b1216cc373e096f78d41bccb44f ""
-  "lecun-talk.png" 1773738553.46227 1244535 632bec98ab27fea4ba0a2c8dbcfd5e2c ""
-  "main.aux" 1773739132.64836 3034 bfa21577d08848ab76377aa2e15d063f "lualatex"
-  "main.nav" 1773739132.64942 1926 06d1aecdd36fcfe548a7a408b12d3ca7 "lualatex"
-  "main.out" 1773739132.64918 267 ff17c5034e79dc576e763143671e3a94 "lualatex"
-  "main.tex" 1773739130.44753 12947 6e06fbd7aa35a6dc7254708240855b2d ""
-  "main.vrb" 1773739132.42491 560 f9c187e986a4e9b468b3eba585d083cd "lualatex"
-  "openai-request.png" 1773718755.79889 227629 0564d3dbbba7c735ee410c70634cb189 ""
-  "snake-grid.png" 1773718818.38742 829 0021395df65e2c24206237191e3cd93f ""
+  "anthropic-claim.png" 1773741476.0724 181342 29c10b1216cc373e096f78d41bccb44f ""
+  "lecun-talk.png" 1773741476.07688 1244535 632bec98ab27fea4ba0a2c8dbcfd5e2c ""
+  "main.aux" 1773741485.07688 3292 2000c6c2e3384a3a0096193b435da075 "lualatex"
+  "main.nav" 1773741485.07778 2112 b9fb0f47748c8dd878b8abc8fd3e2d4b "lualatex"
+  "main.out" 1773741485.07754 267 ff17c5034e79dc576e763143671e3a94 "lualatex"
+  "main.tex" 1773741482.97687 13507 6383bf4c413ce59d61dc4c9734daaf11 ""
+  "main.vrb" 1773741484.81661 560 f9c187e986a4e9b468b3eba585d083cd "lualatex"
+  "openai-request.png" 1773741476.08624 227629 0564d3dbbba7c735ee410c70634cb189 ""
+  "snake-grid.png" 1773741476.08634 829 0021395df65e2c24206237191e3cd93f ""
   (generated)
   "main.aux"
   "main.log"
