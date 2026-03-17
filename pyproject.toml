@@ -1,0 +1,7 @@
+[project]
+name = "snekboros"
+version = "0.1.0"
+description = "Vision World Models for Competitive Snake Playing"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
