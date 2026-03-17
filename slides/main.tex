@@ -228,7 +228,7 @@ and $\mathrm{S}\in\N_{\geq 1}$ be a number of snakes.
 	and $\mu_\mathrm{B,w}=(128,128,255)$ be light blue,
 	and $\mathrm{B}=(0,0,255)$ be blue,
 	and $\mu_\mathrm{R,w}=(255,128,128)$ be light red,
-	and $\mathrm{R}=(255,0,0)$ be red,
+	and $\mathrm{H}=(255,0,0)$ be red,
 	and $\mathrm{G}=(0,255,0)$ be green,
 	and $\mathrm{b}=(0,0,0)$ be black.
 	\begin{align*}
@@ -266,7 +266,7 @@ and $\mathrm{S}\in\N_{\geq 1}$ be a number of snakes.
 				(i,j)=s_{r,1}
 			\mright)
 			\\
-			\mathrm{R} % Red
+			\mathrm{H} % Red
 			, &
 			\text{if }
 			\exists r\in\mleft[2..\abs{\bm{S}}\mright],
@@ -462,27 +462,27 @@ Like how young animals in an environment might first internally learn representa
 \end{frame}
 
 \begin{frame}{Architecture (for rigour)}
-Let $\mathrm{R}\in\N_{\geq 1}$ be a hidden space dimensionality,
+Let $\mathrm{H}\in\N_{\geq 1}$ be a hidden space dimensionality,
 and $\mathrm{Z}\in\N_{\geq 1}$ be a latent space dimensionality,
-and $\mathcal{R}=\R^{\mathrm{R}}$ be a hidden space,
+and $\mathcal{H}=\R^{\mathrm{H}}$ be a hidden space,
 and $\mathcal{Z}=\R^{\mathrm{Z}}$ be a latent space,
 and $\mathbb{P}_{\mathcal{Z}}$ be a probability measure on $\mathcal{Z}$.
 \begin{align*}
 	\phi
 	&:
-	\mathcal{X}\to\mathcal{R}
+	\mathcal{X}\to\mathcal{H}
 	\tag{encoder}
 	\\
 	\mathscr{F}
 	&:
-	\mathcal{R}\times\mathcal{A}\times\mathcal{Z}
+	\mathcal{H}\times\mathcal{A}\times\mathcal{Z}
 	\to
-	\mathcal{R}
+	\mathcal{H}
 	\tag{world model}
 	\\
 	\mathscr{C},\mathscr{V}
 	&:
-	\mathcal{R}\to\R_{\geq 0}
+	\mathcal{H}\to\R_{\geq 0}
 	\tag{energy}
 \end{align*}
 We can train $\mathscr{V}$ on $\sum_{i=t}^{\tau-1}\gamma^{i-t}c_{i}$ and $\mathscr{C}$ on $c_{t}$.
@@ -492,15 +492,17 @@ The solution can be given by a discounted sum planner like
 	\mathcal{U}\mleft(
 		\arg\min_{\bm{a}\in\mathcal{A}^{T}}
 		\E_{\bm{z}\sim\mathbb{P}_{\mathcal{Z}}^{\otimes T}}\mleft[
-			\gamma^{T}
-			\mathscr{V}\mleft(
-				\mleft(
-					\bigcirc_{i=1}^{T}
-					\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
-				\mright)\mleft(
-					\phi(x)
+			\textcolor{black!25}{
+				\gamma^{T}
+				\mathscr{V}\mleft(
+					\mleft(
+						\bigcirc_{i=1}^{T}
+						\mathscr{F}\mleft(\cdot,a_{i},z_{i}\mright)
+					\mright)\mleft(
+						\phi(x)
+					\mright)
 				\mright)
-			\mright)
+			}
 			+
 			\sum_{t=1}^{T}
 			\gamma^{t-1}
