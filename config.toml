@@ -1,0 +1,27 @@
+seed = 37
+device = "mps"
+architecture = "dinowm"
+run = "2"
+
+[preprocess]
+grid_extent = 4
+upsampling_factor = 1
+episodes_per_start = 1
+dataset_split = [0.8, 0.1, 0.1]
+
+[train]
+batch_size = 64
+epochs = 80
+schedule = [0.2, 0.2, 0.6]
+network_depth = 4
+
+enc_w = 0.5
+wm_w = 1.0
+eval_w = 1.0
+
+[test]
+max_steps = 1000
+planner_mode = "cem"
+planner_samples = 1024
+planner_depth = 15
+survival_threshold = 0.0
