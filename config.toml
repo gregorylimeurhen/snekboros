@@ -1,5 +1,5 @@
 seed = 37
-device = "mps"
+device = "cuda"
 architecture = "dinowm"
 run = "2"
 
@@ -10,7 +10,7 @@ episodes_per_start = 1
 dataset_split = [0.8, 0.1, 0.1]
 
 [train]
-batch_size = 64
+batch_size = 2
 epochs = 80
 schedule = [0.2, 0.2, 0.6]
 network_depth = 4
@@ -21,7 +21,7 @@ eval_w = 1.0
 
 [test]
 max_steps = 1000
-planner_mode = "cem"
+planner_mode = "balanced"
 planner_samples = 1024
 planner_depth = 15
-survival_threshold = 0.0
+survival_threshold = 0.25

@@ -1,4 +1,0 @@
-#!/bin/bash
-rm -rf data/
-rm -rf runs/
-find . -type d -name __pycache__ -exec rm -rf {} +

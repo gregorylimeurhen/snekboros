@@ -1,2 +1,3 @@
 #!/bin/bash
-python -B preprocess.py && python -B train.py && python -B test.py
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+python -B train.py && python -B test.py
