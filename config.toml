@@ -1,7 +1,7 @@
 seed = 37
 device = "cuda"
-architecture = "dinowm"
-run = "2"
+architecture = "baseline"
+run = "1"
 
 [preprocess]
 grid_extent = 4
