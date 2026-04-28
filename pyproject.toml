@@ -1,0 +1,4 @@
+[project]
+name = "snekboros"
+version = "0.1.0"
+dependencies = ["tqdm"]

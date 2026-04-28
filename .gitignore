@@ -1,4 +1,7 @@
 __pycache__/
+*.egg-info/
+build/
+
 *.aux
 *.bbl
 *.blg
