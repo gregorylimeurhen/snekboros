@@ -1,6 +1,6 @@
 # 🐍 Snekboros: Vision World Models for Snake Playing
 
-<p align="center"><img src="https://i.ibb.co/HL0LNZgm/win.gif" width="209"></p>
+<p align="center"><img src="https://i.ibb.co/HL0LNZgm/win.gif" width="104.5" height="104.5"></p>
 
 ## Setup
 
