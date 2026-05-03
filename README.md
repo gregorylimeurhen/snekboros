@@ -1,6 +1,6 @@
 # 🐍 Snekboros: Vision World Models for Snake Playing
 
-![4x4 win.](https://i.ibb.co/HL0LNZgm/win.gif)
+<p align="center"><img src="https://i.ibb.co/HL0LNZgm/win.gif" width="209"></p>
 
 You may find our other repositories at:
 1. [github.com/gregorylimeurhen/snekboros-alpha](https://github.com/gregorylimeurhen/snekboros-alpha)
